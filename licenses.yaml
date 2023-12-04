@@ -4943,7 +4943,7 @@ libraries:
 
 name: org.apache.ranger ranger-plugins-audit
 license_category: binary
-version: 2.0.0
+version: 2.3.0
 module: druid-ranger-security
 license_name: Apache License version 2.0
 libraries:
@@ -4953,7 +4953,7 @@ libraries:
 
 name: org.apache.ranger ranger-plugins-common
 license_category: binary
-version: 2.0.0
+version: 2.3.0
 module: druid-ranger-security
 license_name: Apache License version 2.0
 libraries:
