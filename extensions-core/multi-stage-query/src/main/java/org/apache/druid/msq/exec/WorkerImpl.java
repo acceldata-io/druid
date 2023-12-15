@@ -32,6 +32,7 @@ import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
+import com.google.common.util.concurrent.MoreExecutors;
 import com.google.common.util.concurrent.SettableFuture;
 import it.unimi.dsi.fastutil.bytes.ByteArrays;
 import org.apache.druid.common.guava.FutureUtils;
@@ -1309,7 +1310,8 @@ public class WorkerImpl implements Worker
                       kernelHolder.getStageKernelMap().get(stageDef.getId()).fail(t)
               );
             }
-          }
+          },
+          MoreExecutors.directExecutor()
       );
     }
 
@@ -1601,7 +1603,7 @@ public class WorkerImpl implements Worker
               };
 
               // Chain futures so we only sort one partition at a time.
-              nextFuture = Futures.transform(
+              nextFuture = Futures.transformAsync(
                   nextFuture,
                   (AsyncFunction<OutputChannel, OutputChannel>) ignored -> {
                     final SuperSorter sorter = new SuperSorter(
@@ -1628,7 +1630,8 @@ public class WorkerImpl implements Worker
                     );
 
                     return FutureUtils.transform(sorter.run(), r -> Iterables.getOnlyElement(r.getAllChannels()));
-                  }
+                  },
+	          MoreExecutors.directExecutor()
               );
 
               sortedChannelFutures.add(nextFuture);
@@ -1654,7 +1657,7 @@ public class WorkerImpl implements Worker
         throw new ISE("Not initialized");
       }
 
-      return Futures.transform(
+      return Futures.transformAsync(
           pipelineFuture,
           (AsyncFunction<ResultAndChannels<?>, OutputChannels>) resultAndChannels ->
               Futures.transform(
@@ -1662,8 +1665,10 @@ public class WorkerImpl implements Worker
                   (Function<Object, OutputChannels>) input -> {
                     sanityCheckOutputChannels(resultAndChannels.getOutputChannels());
                     return resultAndChannels.getOutputChannels();
-                  }
-              )
+		 },
+                  MoreExecutors.directExecutor()
+              ),
+          	MoreExecutors.directExecutor()
       );
     }
 
@@ -1731,7 +1736,8 @@ public class WorkerImpl implements Worker
                   }
               );
             }
-          }
+          },
+          MoreExecutors.directExecutor()
       );
 
       return new ResultAndChannels<>(
@@ -1761,7 +1767,7 @@ public class WorkerImpl implements Worker
       }
 
       pipelineFuture = FutureUtils.transform(
-          Futures.transform(
+          Futures.transformAsync(
               pipelineFuture,
               new AsyncFunction<ResultAndChannels<?>, ResultAndChannels<?>>()
               {
@@ -1770,7 +1776,8 @@ public class WorkerImpl implements Worker
                 {
                   return fn.apply(t);
                 }
-              }
+              },
+              MoreExecutors.directExecutor()
           ),
           resultAndChannels -> new ResultAndChannels<>(
               resultAndChannels.getResultFuture(),
