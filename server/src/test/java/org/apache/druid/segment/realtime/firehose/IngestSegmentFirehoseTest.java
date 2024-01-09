@@ -19,6 +19,7 @@
 
 package org.apache.druid.segment.realtime.firehose;
 
+import org.apache.druid.common.config.NullHandling;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import org.apache.druid.collections.spatial.search.RadiusBound;
@@ -58,10 +59,12 @@ import org.junit.rules.TemporaryFolder;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.List;
+import org.junit.BeforeClass;
 
 /**
  */
@@ -183,6 +186,11 @@ public class IngestSegmentFirehoseTest
       Assert.assertEquals(40L, row.getRaw("visited_sum"));
       Assert.assertEquals(1.0d, ((HyperLogLogCollector) row.getRaw("unique_hosts")).estimateCardinality(), 0.1);
     }
+  }
+
+@BeforeClass
+  public static void setUpClass() {
+    NullHandling.initializeForTests();
   }
 
   private void createTestIndex(File segmentDir) throws Exception
