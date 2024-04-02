@@ -97,7 +97,7 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
+    <!--dependency>
       <groupId>org.apache.druid</groupId>
       <artifactId>druid-processing</artifactId>
       <version>${open.druid.version}</version>
@@ -110,7 +110,7 @@
       <version>${open.druid.version}</version>
       <type>test-jar</type>
       <scope>test</scope>
-    </dependency>
+    </dependency-->
     <dependency>
       <groupId>org.easymock</groupId>
       <artifactId>easymock</artifactId>

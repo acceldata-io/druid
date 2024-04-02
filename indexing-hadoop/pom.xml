@@ -116,7 +116,7 @@
             <artifactId>hamcrest-all</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
+        <!--dependency>
             <groupId>org.apache.druid</groupId>
             <artifactId>druid-server</artifactId>
             <version>${open.druid.version}</version>
@@ -129,7 +129,7 @@
             <version>${open.druid.version}</version>
             <type>test-jar</type>
             <scope>test</scope>
-        </dependency>
+        </dependency-->
         <dependency>
             <groupId>org.apache.derby</groupId>
             <artifactId>derbyclient</artifactId>

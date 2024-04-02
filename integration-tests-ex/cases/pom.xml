@@ -44,7 +44,7 @@
             <version>${project.parent.version}</version>
         </dependency>
         <!-- See https://maven.apache.org/plugins/maven-jar-plugin/examples/create-test-jar.html -->
-        <dependency>
+        <!--dependency>
             <groupId>org.apache.druid</groupId>
             <artifactId>druid-integration-tests</artifactId>
             <version>${open.druid.version}</version>
@@ -71,7 +71,7 @@
             <groupId>org.apache.druid</groupId>
             <artifactId>druid-indexing-service</artifactId>
             <version>${project.parent.version}</version>
-        </dependency>
+        </dependency-->
         <dependency>
             <groupId>com.google.inject</groupId>
             <artifactId>guice</artifactId>

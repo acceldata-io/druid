@@ -126,7 +126,7 @@
             <scope>provided</scope>
         </dependency>
         <!-- Tests -->
-        <dependency>
+        <!--dependency>
             <groupId>org.apache.druid</groupId>
             <artifactId>druid-processing</artifactId>
             <version>${open.druid.version}</version>
@@ -139,7 +139,7 @@
             <version>${open.druid.version}</version>
             <scope>test</scope>
             <type>test-jar</type>
-        </dependency>
+        </dependency-->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
