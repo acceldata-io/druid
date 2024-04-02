@@ -145,6 +145,7 @@
              ref: https://github.com/mapstruct/mapstruct/pull/1241
              -->
          <jacocoArgLine />
+        <open.druid.version>27.0.0</open.druid.version>
     </properties>
 
     <modules>
@@ -244,6 +245,11 @@
             <snapshots>
                <enabled>false</enabled>
             </snapshots>
+        </repository>
+        <repository>
+            <id>acceldata repo</id>
+            <name>acceldata repo</name>
+            <url>https://repo1.acceldata.dev/repository/odp-central/</url>
         </repository>
     </repositories>
 

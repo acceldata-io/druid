@@ -50,7 +50,7 @@
       <groupId>org.apache.druid</groupId>
       <artifactId>druid-server</artifactId>
       <type>test-jar</type>
-      <version>${project.parent.version}</version>
+      <version>${open.druid.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
