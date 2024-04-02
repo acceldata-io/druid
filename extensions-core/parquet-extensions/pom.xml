@@ -167,13 +167,13 @@
       <artifactId>junit</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
+    <!--dependency>
       <groupId>org.apache.druid</groupId>
       <artifactId>druid-processing</artifactId>
       <version>${project.parent.version}</version>
       <scope>test</scope>
       <type>test-jar</type>
-    </dependency>
+    </dependency-->
   </dependencies>
   <profiles>
     <profile>
