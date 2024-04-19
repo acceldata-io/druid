@@ -82,24 +82,24 @@
       <artifactId>druid-stats</artifactId>
       <version>${project.parent.version}</version>
     </dependency>
-    <!--dependency>
+    <dependency>
       <groupId>org.apache.druid</groupId>
       <artifactId>druid-processing</artifactId>
-      <version>${project.parent.version}</version>
+      <version>${open.druid.version}</version>
       <type>test-jar</type>
     </dependency>
     <dependency>
       <groupId>org.apache.druid</groupId>
       <artifactId>druid-server</artifactId>
-      <version>${project.parent.version}</version>
+      <version>${open.druid.version}</version>
       <type>test-jar</type>
     </dependency>
     <dependency>
       <groupId>org.apache.druid</groupId>
       <artifactId>druid-sql</artifactId>
-      <version>${project.parent.version}</version>
+      <version>${open.druid.version}</version>
       <type>test-jar</type>
-    </dependency-->
+    </dependency>
     <dependency>
       <groupId>org.apache.calcite</groupId>
       <artifactId>calcite-core</artifactId>
