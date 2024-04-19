@@ -147,7 +147,7 @@
       <version>${apache.kafka.version}</version>
       <scope>test</scope>
     </dependency>
-    <!--dependency>
+    <dependency>
       <groupId>org.apache.druid</groupId>
       <artifactId>druid-processing</artifactId>
       <version>${open.druid.version}</version>
@@ -167,7 +167,7 @@
       <version>${open.druid.version}</version>
       <type>test-jar</type>
       <scope>test</scope>
-    </dependency-->
+    </dependency>
     <dependency>
       <groupId>org.apache.curator</groupId>
       <artifactId>curator-test</artifactId>

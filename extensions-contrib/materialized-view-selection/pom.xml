@@ -104,7 +104,7 @@
             <artifactId>jsr305</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!--dependency>
+        <dependency>
             <groupId>org.apache.druid</groupId>
             <artifactId>druid-processing</artifactId>
             <version>${open.druid.version}</version>
@@ -117,7 +117,7 @@
             <version>${open.druid.version}</version>
             <scope>test</scope>
             <type>test-jar</type>
-        </dependency-->
+        </dependency>
         <dependency>
             <groupId>org.easymock</groupId>
             <artifactId>easymock</artifactId>
