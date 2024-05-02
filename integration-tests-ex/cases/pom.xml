@@ -55,22 +55,22 @@
         <dependency>
             <groupId>org.apache.druid</groupId>
             <artifactId>druid-processing</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${open.druid.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.druid</groupId>
             <artifactId>druid-server</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${open.druid.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.druid</groupId>
             <artifactId>druid-services</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${open.druid.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.druid</groupId>
             <artifactId>druid-indexing-service</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${open.druid.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.inject</groupId>

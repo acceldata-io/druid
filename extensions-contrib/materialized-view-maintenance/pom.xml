@@ -30,7 +30,7 @@
     <groupId>org.apache.druid.extensions.contrib</groupId>
     <artifactId>materialized-view-maintenance</artifactId>
     <name>materialized-view-maintenance</name>
-    
+
     <dependencies>
         <dependency>
             <groupId>org.apache.druid</groupId>
