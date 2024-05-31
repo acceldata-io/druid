@@ -52,12 +52,14 @@ public class LocalCatalog extends IcebergCatalog
   public LocalCatalog(
       @JsonProperty("warehousePath") String warehousePath,
       @JsonProperty("catalogProperties") @Nullable
-          Map<String, String> catalogProperties
+          Map<String, String> catalogProperties,
+      @JsonProperty("caseSensitive") Boolean caseSensitive
   )
   {
     Preconditions.checkNotNull(warehousePath, "warehousePath is null");
     this.warehousePath = warehousePath;
     this.catalogProperties = catalogProperties;
+    this.caseSensitive = caseSensitive == null ? true : caseSensitive;
     this.catalog = retrieveCatalog();
 
   }
@@ -109,12 +111,13 @@ public class LocalCatalog extends IcebergCatalog
     }
     LocalCatalog that = (LocalCatalog) o;
     return warehousePath.equals(that.warehousePath)
-           && Objects.equals(catalogProperties, that.catalogProperties);
+           && Objects.equals(catalogProperties, that.catalogProperties)
+           && Objects.equals(caseSensitive, that.caseSensitive);
   }
 
   @Override
   public int hashCode()
   {
-    return Objects.hash(warehousePath, catalogProperties);
+    return Objects.hash(warehousePath, catalogProperties, caseSensitive);
   }
 }
