@@ -56,6 +56,9 @@ public class HiveIcebergCatalog extends IcebergCatalog
   @JsonProperty
   private Map<String, String> catalogProperties;
 
+  @JsonProperty
+  private final Boolean caseSensitive;
+
   private final Configuration configuration;
 
   private Catalog hiveCatalog;
@@ -68,6 +71,7 @@ public class HiveIcebergCatalog extends IcebergCatalog
       @JsonProperty("catalogUri") String catalogUri,
       @JsonProperty("catalogProperties") @Nullable
           Map<String, Object> catalogProperties,
+      @JsonProperty("caseSensitive") Boolean caseSensitive,
       @JacksonInject @Json ObjectMapper mapper,
       @JacksonInject @HiveConf Configuration configuration
   )
@@ -75,6 +79,7 @@ public class HiveIcebergCatalog extends IcebergCatalog
     this.warehousePath = Preconditions.checkNotNull(warehousePath, "warehousePath cannot be null");
     this.catalogUri = Preconditions.checkNotNull(catalogUri, "catalogUri cannot be null");
     this.catalogProperties = DynamicConfigProviderUtils.extraConfigAndSetStringMap(catalogProperties, DRUID_DYNAMIC_CONFIG_PROVIDER_KEY, mapper);
+    this.caseSensitive = caseSensitive == null ? true : caseSensitive;
     this.configuration = configuration;
     this.catalogProperties
         .forEach(this.configuration::set);
@@ -135,5 +140,11 @@ public class HiveIcebergCatalog extends IcebergCatalog
   public Map<String, String> getCatalogProperties()
   {
     return catalogProperties;
+  }
+
+  @Override
+  public boolean isCaseSensitive()
+  {
+    return caseSensitive;
   }
 }
