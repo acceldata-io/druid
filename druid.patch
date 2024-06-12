@@ -1,0 +1,1021 @@
+From 364ae1e9334241672736bab44d9324bcd920a8d1 Mon Sep 17 00:00:00 2001
+From: basapuram-kumar <bsprmkumar@gmail.com>
+Date: Tue, 2 Apr 2024 15:06:29 +0530
+Subject: [PATCH] ODP-1248: Handling Druid test-jar build dependencies
+
+---
+ benchmarks/pom.xml                                        | 6 +++---
+ extensions-contrib/aliyun-oss-extensions/pom.xml          | 2 +-
+ extensions-contrib/ambari-metrics-emitter/pom.xml         | 2 +-
+ extensions-contrib/compressed-bigdecimal/pom.xml          | 8 ++++----
+ extensions-contrib/distinctcount/pom.xml                  | 2 +-
+ extensions-contrib/dropwizard-emitter/pom.xml             | 2 +-
+ extensions-contrib/graphite-emitter/pom.xml               | 2 +-
+ extensions-contrib/kafka-emitter/pom.xml                  | 4 ++--
+ extensions-contrib/kubernetes-overlord-extensions/pom.xml | 6 +++---
+ extensions-contrib/materialized-view-maintenance/pom.xml  | 4 ++--
+ extensions-contrib/materialized-view-selection/pom.xml    | 4 ++--
+ extensions-contrib/momentsketch/pom.xml                   | 4 ++--
+ extensions-contrib/moving-average-query/pom.xml           | 4 ++--
+ extensions-contrib/prometheus-emitter/pom.xml             | 4 ++--
+ extensions-contrib/statsd-emitter/pom.xml                 | 4 ++--
+ extensions-contrib/tdigestsketch/pom.xml                  | 6 +++---
+ extensions-contrib/time-min-max/pom.xml                   | 2 +-
+ extensions-contrib/virtual-columns/pom.xml                | 2 +-
+ extensions-core/avro-extensions/pom.xml                   | 2 +-
+ extensions-core/datasketches/pom.xml                      | 6 +++---
+ extensions-core/druid-basic-security/pom.xml              | 4 ++--
+ extensions-core/druid-bloom-filter/pom.xml                | 6 +++---
+ extensions-core/druid-catalog/pom.xml                     | 6 +++---
+ extensions-core/druid-kerberos/pom.xml                    | 2 +-
+ extensions-core/druid-ranger-security/pom.xml             | 2 +-
+ extensions-core/google-extensions/pom.xml                 | 4 ++--
+ extensions-core/hdfs-storage/pom.xml                      | 2 +-
+ extensions-core/histogram/pom.xml                         | 6 +++---
+ extensions-core/kafka-indexing-service/pom.xml            | 6 +++---
+ extensions-core/kinesis-indexing-service/pom.xml          | 6 +++---
+ extensions-core/lookups-cached-global/pom.xml             | 2 +-
+ extensions-core/lookups-cached-single/pom.xml             | 4 ++--
+ extensions-core/multi-stage-query/pom.xml                 | 6 +++---
+ extensions-core/orc-extensions/pom.xml                    | 2 +-
+ extensions-core/parquet-extensions/pom.xml                | 2 +-
+ extensions-core/protobuf-extensions/pom.xml               | 2 +-
+ extensions-core/s3-extensions/pom.xml                     | 2 +-
+ extensions-core/stats/pom.xml                             | 6 +++---
+ extensions-core/testing-tools/pom.xml                     | 6 +++---
+ indexing-hadoop/pom.xml                                   | 4 ++--
+ indexing-service/pom.xml                                  | 4 ++--
+ integration-tests-ex/cases/pom.xml                        | 2 +-
+ integration-tests-ex/tools/pom.xml                        | 6 +++---
+ pom.xml                                                   | 6 ++++++
+ server/pom.xml                                            | 2 +-
+ services/pom.xml                                          | 4 ++--
+ sql/pom.xml                                               | 4 ++--
+ 47 files changed, 95 insertions(+), 89 deletions(-)
+
+diff --git a/benchmarks/pom.xml b/benchmarks/pom.xml
+index cb5e5b3065fc..2ca61612a07a 100644
+--- a/benchmarks/pom.xml
++++ b/benchmarks/pom.xml
+@@ -85,19 +85,19 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-sql</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+     </dependency>
+     <dependency>
+diff --git a/extensions-contrib/aliyun-oss-extensions/pom.xml b/extensions-contrib/aliyun-oss-extensions/pom.xml
+index 9bc9ac1bf49f..2a2969cef430 100644
+--- a/extensions-contrib/aliyun-oss-extensions/pom.xml
++++ b/extensions-contrib/aliyun-oss-extensions/pom.xml
+@@ -110,7 +110,7 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+diff --git a/extensions-contrib/ambari-metrics-emitter/pom.xml b/extensions-contrib/ambari-metrics-emitter/pom.xml
+index 74337304dd89..cd7a1e83395b 100644
+--- a/extensions-contrib/ambari-metrics-emitter/pom.xml
++++ b/extensions-contrib/ambari-metrics-emitter/pom.xml
+@@ -43,7 +43,7 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-contrib/compressed-bigdecimal/pom.xml b/extensions-contrib/compressed-bigdecimal/pom.xml
+index 5ae02a1cf2a4..6136d468c74a 100644
+--- a/extensions-contrib/compressed-bigdecimal/pom.xml
++++ b/extensions-contrib/compressed-bigdecimal/pom.xml
+@@ -64,28 +64,28 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <classifier>tests</classifier>
+       <scope>provided</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>provided</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-sql</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-contrib/distinctcount/pom.xml b/extensions-contrib/distinctcount/pom.xml
+index bd39499f80e2..99b60d9645a5 100644
+--- a/extensions-contrib/distinctcount/pom.xml
++++ b/extensions-contrib/distinctcount/pom.xml
+@@ -85,7 +85,7 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <scope>test</scope>
+             <type>test-jar</type>
+         </dependency>
+diff --git a/extensions-contrib/dropwizard-emitter/pom.xml b/extensions-contrib/dropwizard-emitter/pom.xml
+index cdb73786c9ff..edfd14c17f2f 100644
+--- a/extensions-contrib/dropwizard-emitter/pom.xml
++++ b/extensions-contrib/dropwizard-emitter/pom.xml
+@@ -50,7 +50,7 @@
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+       <type>test-jar</type>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+diff --git a/extensions-contrib/graphite-emitter/pom.xml b/extensions-contrib/graphite-emitter/pom.xml
+index eaf603f48f59..1fedffea0bd3 100644
+--- a/extensions-contrib/graphite-emitter/pom.xml
++++ b/extensions-contrib/graphite-emitter/pom.xml
+@@ -105,7 +105,7 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-contrib/kafka-emitter/pom.xml b/extensions-contrib/kafka-emitter/pom.xml
+index 7998f9360a56..9aeeb6824e15 100644
+--- a/extensions-contrib/kafka-emitter/pom.xml
++++ b/extensions-contrib/kafka-emitter/pom.xml
+@@ -100,14 +100,14 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-contrib/kubernetes-overlord-extensions/pom.xml b/extensions-contrib/kubernetes-overlord-extensions/pom.xml
+index 2e7715f317c8..b32494d358a0 100644
+--- a/extensions-contrib/kubernetes-overlord-extensions/pom.xml
++++ b/extensions-contrib/kubernetes-overlord-extensions/pom.xml
+@@ -219,21 +219,21 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-indexing-service</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-contrib/materialized-view-maintenance/pom.xml b/extensions-contrib/materialized-view-maintenance/pom.xml
+index ef53be61f034..ea44cecd4505 100644
+--- a/extensions-contrib/materialized-view-maintenance/pom.xml
++++ b/extensions-contrib/materialized-view-maintenance/pom.xml
+@@ -95,14 +95,14 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-server</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <scope>test</scope>
+             <type>test-jar</type>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <scope>test</scope>
+             <type>test-jar</type>
+         </dependency>
+diff --git a/extensions-contrib/materialized-view-selection/pom.xml b/extensions-contrib/materialized-view-selection/pom.xml
+index 6794a43efa95..516f3da2bb3c 100644
+--- a/extensions-contrib/materialized-view-selection/pom.xml
++++ b/extensions-contrib/materialized-view-selection/pom.xml
+@@ -107,14 +107,14 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <scope>test</scope>
+             <type>test-jar</type>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-server</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <scope>test</scope>
+             <type>test-jar</type>
+         </dependency>
+diff --git a/extensions-contrib/momentsketch/pom.xml b/extensions-contrib/momentsketch/pom.xml
+index 198111110527..641d750e4154 100644
+--- a/extensions-contrib/momentsketch/pom.xml
++++ b/extensions-contrib/momentsketch/pom.xml
+@@ -89,14 +89,14 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-server</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <scope>test</scope>
+         </dependency>
+ 
+diff --git a/extensions-contrib/moving-average-query/pom.xml b/extensions-contrib/moving-average-query/pom.xml
+index b1cd49ef56b3..6c19dd71fe65 100644
+--- a/extensions-contrib/moving-average-query/pom.xml
++++ b/extensions-contrib/moving-average-query/pom.xml
+@@ -94,14 +94,14 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-contrib/prometheus-emitter/pom.xml b/extensions-contrib/prometheus-emitter/pom.xml
+index ae2399cb4367..a95cfd39fbbe 100644
+--- a/extensions-contrib/prometheus-emitter/pom.xml
++++ b/extensions-contrib/prometheus-emitter/pom.xml
+@@ -101,14 +101,14 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-contrib/statsd-emitter/pom.xml b/extensions-contrib/statsd-emitter/pom.xml
+index b8c50351084e..e17045a0d4ef 100644
+--- a/extensions-contrib/statsd-emitter/pom.xml
++++ b/extensions-contrib/statsd-emitter/pom.xml
+@@ -91,14 +91,14 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-contrib/tdigestsketch/pom.xml b/extensions-contrib/tdigestsketch/pom.xml
+index 40ef8904762e..093243e4a8fc 100644
+--- a/extensions-contrib/tdigestsketch/pom.xml
++++ b/extensions-contrib/tdigestsketch/pom.xml
+@@ -152,21 +152,21 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-sql</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-contrib/time-min-max/pom.xml b/extensions-contrib/time-min-max/pom.xml
+index 212913aa8813..d9df60cdb502 100644
+--- a/extensions-contrib/time-min-max/pom.xml
++++ b/extensions-contrib/time-min-max/pom.xml
+@@ -96,7 +96,7 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-contrib/virtual-columns/pom.xml b/extensions-contrib/virtual-columns/pom.xml
+index ed0411af9967..8599422f7eb2 100644
+--- a/extensions-contrib/virtual-columns/pom.xml
++++ b/extensions-contrib/virtual-columns/pom.xml
+@@ -80,7 +80,7 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+diff --git a/extensions-core/avro-extensions/pom.xml b/extensions-core/avro-extensions/pom.xml
+index a799a4471d39..97049edb64e2 100644
+--- a/extensions-core/avro-extensions/pom.xml
++++ b/extensions-core/avro-extensions/pom.xml
+@@ -262,7 +262,7 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <scope>test</scope>
+       <type>test-jar</type>
+     </dependency>
+diff --git a/extensions-core/datasketches/pom.xml b/extensions-core/datasketches/pom.xml
+index 119f4e19bfa3..2c3dac1d83fa 100644
+--- a/extensions-core/datasketches/pom.xml
++++ b/extensions-core/datasketches/pom.xml
+@@ -178,21 +178,21 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <scope>test</scope>
+       <type>test-jar</type>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-sql</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-core/druid-basic-security/pom.xml b/extensions-core/druid-basic-security/pom.xml
+index 746f62b8f614..d351f45de583 100644
+--- a/extensions-core/druid-basic-security/pom.xml
++++ b/extensions-core/druid-basic-security/pom.xml
+@@ -137,14 +137,14 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <scope>test</scope>
+       <type>test-jar</type>
+     </dependency>
+diff --git a/extensions-core/druid-bloom-filter/pom.xml b/extensions-core/druid-bloom-filter/pom.xml
+index 995987482175..c02e74379b95 100644
+--- a/extensions-core/druid-bloom-filter/pom.xml
++++ b/extensions-core/druid-bloom-filter/pom.xml
+@@ -112,21 +112,21 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <scope>test</scope>
+       <type>test-jar</type>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <scope>test</scope>
+       <type>test-jar</type>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-sql</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <scope>test</scope>
+       <type>test-jar</type>
+     </dependency>
+diff --git a/extensions-core/druid-catalog/pom.xml b/extensions-core/druid-catalog/pom.xml
+index 3646cc4bb34f..5d42aef814fa 100644
+--- a/extensions-core/druid-catalog/pom.xml
++++ b/extensions-core/druid-catalog/pom.xml
+@@ -241,21 +241,21 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <scope>test</scope>
+             <type>test-jar</type>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-server</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-sql</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+diff --git a/extensions-core/druid-kerberos/pom.xml b/extensions-core/druid-kerberos/pom.xml
+index 4d17a01ff22d..3cbad19e7113 100644
+--- a/extensions-core/druid-kerberos/pom.xml
++++ b/extensions-core/druid-kerberos/pom.xml
+@@ -364,7 +364,7 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <scope>test</scope>
+       <type>test-jar</type>
+     </dependency>
+diff --git a/extensions-core/druid-ranger-security/pom.xml b/extensions-core/druid-ranger-security/pom.xml
+index e815d7849eea..91245a8cf141 100644
+--- a/extensions-core/druid-ranger-security/pom.xml
++++ b/extensions-core/druid-ranger-security/pom.xml
+@@ -163,7 +163,7 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-server</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+diff --git a/extensions-core/google-extensions/pom.xml b/extensions-core/google-extensions/pom.xml
+index 47069897c2d6..b9ea2bdf9a74 100644
+--- a/extensions-core/google-extensions/pom.xml
++++ b/extensions-core/google-extensions/pom.xml
+@@ -129,14 +129,14 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-gcp-common</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <scope>test</scope>
+             <type>test-jar</type>
+         </dependency>
+diff --git a/extensions-core/hdfs-storage/pom.xml b/extensions-core/hdfs-storage/pom.xml
+index a6222f8dad2f..f3458dd9faa3 100644
+--- a/extensions-core/hdfs-storage/pom.xml
++++ b/extensions-core/hdfs-storage/pom.xml
+@@ -128,7 +128,7 @@
+         <dependency>
+           <groupId>org.apache.druid</groupId>
+           <artifactId>druid-processing</artifactId>
+-          <version>${project.parent.version}</version>
++          <version>${open.druid.version}</version>
+           <type>test-jar</type>
+           <scope>test</scope>
+         </dependency>
+diff --git a/extensions-core/histogram/pom.xml b/extensions-core/histogram/pom.xml
+index 485c6f8f9ebd..52ad7f0418ac 100644
+--- a/extensions-core/histogram/pom.xml
++++ b/extensions-core/histogram/pom.xml
+@@ -96,21 +96,21 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <scope>test</scope>
+             <type>test-jar</type>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-sql</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-server</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <scope>test</scope>
+             <type>test-jar</type>
+         </dependency>
+diff --git a/extensions-core/kafka-indexing-service/pom.xml b/extensions-core/kafka-indexing-service/pom.xml
+index 95c5bf3310c5..cafc95cf4b7b 100644
+--- a/extensions-core/kafka-indexing-service/pom.xml
++++ b/extensions-core/kafka-indexing-service/pom.xml
+@@ -150,21 +150,21 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-indexing-service</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-core/kinesis-indexing-service/pom.xml b/extensions-core/kinesis-indexing-service/pom.xml
+index fdf008b78b14..88f00bcde28e 100644
+--- a/extensions-core/kinesis-indexing-service/pom.xml
++++ b/extensions-core/kinesis-indexing-service/pom.xml
+@@ -155,21 +155,21 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-server</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-indexing-service</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+diff --git a/extensions-core/lookups-cached-global/pom.xml b/extensions-core/lookups-cached-global/pom.xml
+index ba9829690748..ed0dd8d00d65 100644
+--- a/extensions-core/lookups-cached-global/pom.xml
++++ b/extensions-core/lookups-cached-global/pom.xml
+@@ -114,7 +114,7 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-core/lookups-cached-single/pom.xml b/extensions-core/lookups-cached-single/pom.xml
+index 56f0c935c22b..537ea1edc12e 100644
+--- a/extensions-core/lookups-cached-single/pom.xml
++++ b/extensions-core/lookups-cached-single/pom.xml
+@@ -100,14 +100,14 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-core/multi-stage-query/pom.xml b/extensions-core/multi-stage-query/pom.xml
+index 4db0d5c890ea..31925f746024 100644
+--- a/extensions-core/multi-stage-query/pom.xml
++++ b/extensions-core/multi-stage-query/pom.xml
+@@ -240,21 +240,21 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <scope>test</scope>
+             <type>test-jar</type>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-server</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-sql</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+diff --git a/extensions-core/orc-extensions/pom.xml b/extensions-core/orc-extensions/pom.xml
+index 6c263e48b0e2..342578466aba 100644
+--- a/extensions-core/orc-extensions/pom.xml
++++ b/extensions-core/orc-extensions/pom.xml
+@@ -226,7 +226,7 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+diff --git a/extensions-core/parquet-extensions/pom.xml b/extensions-core/parquet-extensions/pom.xml
+index 737a79d909ed..c165e6baf7b7 100644
+--- a/extensions-core/parquet-extensions/pom.xml
++++ b/extensions-core/parquet-extensions/pom.xml
+@@ -170,7 +170,7 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <scope>test</scope>
+       <type>test-jar</type>
+     </dependency>
+diff --git a/extensions-core/protobuf-extensions/pom.xml b/extensions-core/protobuf-extensions/pom.xml
+index cc7c1e61a379..52c4551f8505 100644
+--- a/extensions-core/protobuf-extensions/pom.xml
++++ b/extensions-core/protobuf-extensions/pom.xml
+@@ -170,7 +170,7 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-core/s3-extensions/pom.xml b/extensions-core/s3-extensions/pom.xml
+index 237312717f97..668820a67623 100644
+--- a/extensions-core/s3-extensions/pom.xml
++++ b/extensions-core/s3-extensions/pom.xml
+@@ -130,7 +130,7 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/extensions-core/stats/pom.xml b/extensions-core/stats/pom.xml
+index 6bdb1a496f35..4f08b51a6b1b 100644
+--- a/extensions-core/stats/pom.xml
++++ b/extensions-core/stats/pom.xml
+@@ -96,7 +96,7 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <scope>test</scope>
+             <type>test-jar</type>
+         </dependency>
+@@ -104,7 +104,7 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-server</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <scope>test</scope>
+             <type>test-jar</type>
+         </dependency>
+@@ -112,7 +112,7 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-sql</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <scope>test</scope>
+             <type>test-jar</type>
+         </dependency>
+diff --git a/extensions-core/testing-tools/pom.xml b/extensions-core/testing-tools/pom.xml
+index a8b535f0c9c5..246a5f00b889 100644
+--- a/extensions-core/testing-tools/pom.xml
++++ b/extensions-core/testing-tools/pom.xml
+@@ -138,21 +138,21 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <scope>test</scope>
+       <type>test-jar</type>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-sql</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+diff --git a/indexing-hadoop/pom.xml b/indexing-hadoop/pom.xml
+index cc913f8a686a..83e75a1b9d35 100644
+--- a/indexing-hadoop/pom.xml
++++ b/indexing-hadoop/pom.xml
+@@ -119,14 +119,14 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-server</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+diff --git a/indexing-service/pom.xml b/indexing-service/pom.xml
+index 84dffaadf930..0688b89f9a62 100644
+--- a/indexing-service/pom.xml
++++ b/indexing-service/pom.xml
+@@ -225,14 +225,14 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-server</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+diff --git a/integration-tests-ex/cases/pom.xml b/integration-tests-ex/cases/pom.xml
+index 16426f3bb162..3ea6a3336d2d 100644
+--- a/integration-tests-ex/cases/pom.xml
++++ b/integration-tests-ex/cases/pom.xml
+@@ -47,7 +47,7 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-integration-tests</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <classifier>tests</classifier>
+             <type>test-jar</type>
+             <scope>test</scope>
+diff --git a/integration-tests-ex/tools/pom.xml b/integration-tests-ex/tools/pom.xml
+index eb30552ccff4..ca837121465d 100644
+--- a/integration-tests-ex/tools/pom.xml
++++ b/integration-tests-ex/tools/pom.xml
+@@ -63,21 +63,21 @@
+ 		<dependency>
+ 			<groupId>org.apache.druid</groupId>
+ 			<artifactId>druid-processing</artifactId>
+-			<version>${project.parent.version}</version>
++			<version>${open.druid.version}</version>
+ 			<type>test-jar</type>
+ 			<scope>test</scope>
+ 		</dependency>
+ 		<dependency>
+ 			<groupId>org.apache.druid</groupId>
+ 			<artifactId>druid-server</artifactId>
+-			<version>${project.parent.version}</version>
++			<version>${open.druid.version}</version>
+ 			<scope>test</scope>
+ 			<type>test-jar</type>
+ 		</dependency>
+ 		<dependency>
+ 			<groupId>org.apache.druid</groupId>
+ 			<artifactId>druid-sql</artifactId>
+-			<version>${project.parent.version}</version>
++			<version>${open.druid.version}</version>
+ 			<type>test-jar</type>
+ 			<scope>test</scope>
+ 		</dependency>
+diff --git a/pom.xml b/pom.xml
+index c86641904358..ab574b1750c4 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -157,6 +157,7 @@
+              ref: https://github.com/mapstruct/mapstruct/pull/1241
+              -->
+          <jacocoArgLine />
++        <open.druid.version>27.0.0</open.druid.version>
+     </properties>
+ 
+     <modules>
+@@ -257,6 +258,11 @@
+                <enabled>false</enabled>
+             </snapshots>
+         </repository>
++        <repository>
++            <id>acceldata repo</id>
++            <name>acceldata repo</name>
++            <url>https://repo1.acceldata.dev/repository/odp-central/</url>
++        </repository>
+     </repositories>
+ 
+     <pluginRepositories>
+diff --git a/server/pom.xml b/server/pom.xml
+index 8acd5b266d9f..f4a17dff123e 100644
+--- a/server/pom.xml
++++ b/server/pom.xml
+@@ -346,7 +346,7 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+diff --git a/services/pom.xml b/services/pom.xml
+index 0163d5e9a6d2..666267be1f09 100644
+--- a/services/pom.xml
++++ b/services/pom.xml
+@@ -211,14 +211,14 @@
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-server</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+         <dependency>
+             <groupId>org.apache.druid</groupId>
+             <artifactId>druid-processing</artifactId>
+-            <version>${project.parent.version}</version>
++            <version>${open.druid.version}</version>
+             <type>test-jar</type>
+             <scope>test</scope>
+         </dependency>
+diff --git a/sql/pom.xml b/sql/pom.xml
+index 7b5e9826e432..477fc8ccb72f 100644
+--- a/sql/pom.xml
++++ b/sql/pom.xml
+@@ -221,14 +221,14 @@
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-processing</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+       <groupId>org.apache.druid</groupId>
+       <artifactId>druid-server</artifactId>
+-      <version>${project.parent.version}</version>
++      <version>${open.druid.version}</version>
+       <type>test-jar</type>
+       <scope>test</scope>
+     </dependency>

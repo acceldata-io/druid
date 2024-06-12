@@ -47,7 +47,7 @@
         <dependency>
             <groupId>org.apache.druid</groupId>
             <artifactId>druid-integration-tests</artifactId>
-            <version>${project.parent.version}</version>
+            <version>${open.druid.version}</version>
             <classifier>tests</classifier>
             <type>test-jar</type>
             <scope>test</scope>
