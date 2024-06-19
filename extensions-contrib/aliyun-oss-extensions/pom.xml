@@ -28,10 +28,10 @@
   <parent>
     <groupId>org.apache.druid</groupId>
     <artifactId>druid</artifactId>
-    <version>27.0.0.3.2.3.0-2</version>
+    <version>27.0.0.3.2.3.0-SNAPSHOT</version>
     <relativePath>../../pom.xml</relativePath>
   </parent>
-  
+
     <dependencies>
         <dependency>
             <groupId>org.apache.druid</groupId>
@@ -44,7 +44,7 @@
             <artifactId>aliyun-sdk-oss</artifactId>
             <version>3.11.3</version>
         </dependency>
-        
+
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-guice</artifactId>
@@ -105,14 +105,14 @@
             <artifactId>commons-lang</artifactId>
             <scope>provided</scope>
         </dependency>
-            
+
         <!-- Tests -->
         <dependency>
             <groupId>org.apache.druid</groupId>
             <artifactId>druid-processing</artifactId>
             <version>${open.druid.version}</version>
             <type>test-jar</type>
-            <scope>test</scope> 
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
