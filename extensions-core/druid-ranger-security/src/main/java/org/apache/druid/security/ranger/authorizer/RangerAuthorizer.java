@@ -42,7 +42,6 @@ import org.apache.ranger.plugin.service.RangerBasePlugin;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
@@ -135,7 +134,7 @@ class RangerDruidAccessRequest extends RangerAccessRequestImpl
 {
   public RangerDruidAccessRequest(RangerDruidResource resource, String user, Set<String> userGroups, Action action)
   {
-    super(resource, action.name().toLowerCase(Locale.ENGLISH), user, userGroups, Collections.emptySet());
+    super(resource, action.name().toLowerCase(Locale.ENGLISH), user, userGroups, null);
     setAccessTime(new Date());
   }
 }
