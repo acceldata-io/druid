@@ -165,6 +165,7 @@
          <jacocoArgLine />
          <!--  used to enable continuous profiling of jdk17 unit tests in github actions  -->
          <jfrProfilerArgLine />
+        <open.druid.version>29.0.1</open.druid.version>
     </properties>
 
     <modules>
@@ -287,6 +288,11 @@
             <snapshots>
                <enabled>false</enabled>
             </snapshots>
+        </repository>
+        <repository>
+            <id>acceldata repo</id>
+            <name>acceldata repo</name>
+            <url>https://repo1.acceldata.dev/repository/odp-central/</url>
         </repository>
     </repositories>
 
