@@ -34,6 +34,7 @@ import org.apache.druid.tasklogs.TaskLogs;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.Assume;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
 
@@ -121,6 +122,9 @@ public class FileTaskLogsTest
   @Test
   public void testPushTaskLogDirCreationFails() throws Exception
   {
+
+    String currentUser = System.getProperty("user.name");
+    Assume.assumeFalse("Test skipped for root user", "root".equals(currentUser));
     final File tmpDir = temporaryFolder.newFolder();
     final File logDir = new File(tmpDir, "druid/logs");
     final File logFile = new File(tmpDir, "log");
