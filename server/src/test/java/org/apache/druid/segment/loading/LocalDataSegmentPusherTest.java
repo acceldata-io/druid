@@ -32,6 +32,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.Assume;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
 
@@ -249,6 +250,8 @@ public class LocalDataSegmentPusherTest
   @Test
   public void testPushCannotCreateDirectory() throws IOException
   {
+    String currentUser = System.getProperty("user.name");
+    Assume.assumeFalse("Test skipped for root user", "root".equals(currentUser));
     exception.expect(IOException.class);
     exception.expectMessage("Cannot create directory");
     config.storageDirectory = new File(config.storageDirectory, "xxx");
@@ -260,6 +263,8 @@ public class LocalDataSegmentPusherTest
   @Test
   public void testPushZipCannotCreateDirectory() throws IOException
   {
+    String currentUser = System.getProperty("user.name");
+    Assume.assumeFalse("Test skipped for root user", "root".equals(currentUser));
     exception.expect(IOException.class);
     exception.expectMessage("Cannot create directory");
     configZip.storageDirectory = new File(configZip.storageDirectory, "xxx");
