@@ -27,10 +27,11 @@ import org.apache.druid.java.util.common.ISE;
 import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.Assume;
 import org.junit.rules.TemporaryFolder;
-
 import java.io.File;
 import java.io.IOException;
+
 
 public class AzureOutputConfigTest
 {
@@ -55,6 +56,8 @@ public class AzureOutputConfigTest
   @Test
   public void testTempDirectoryNotWritable() throws IOException
   {
+    String currentUser = System.getProperty("user.name");
+    Assume.assumeFalse("Test skipped for root user", "root".equals(currentUser));
     File tempDir = temporaryFolder.newFolder();
     if (!tempDir.setWritable(false)) {
       throw new ISE("Unable to change the permission of temp folder for %s", this.getClass().getName());

@@ -36,6 +36,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
+import org.junit.Assume;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
@@ -238,6 +239,8 @@ public class SegmentLocalCacheManagerTest
   @Test
   public void testRetrySuccessAtSecondLocation() throws Exception
   {
+    String currentUser = System.getProperty("user.name");
+    Assume.assumeFalse("Test skipped for root user", "root".equals(currentUser));
     final List<StorageLocationConfig> locations = new ArrayList<>();
     final File localStorageFolder = tmpFolder.newFolder("local_storage_folder");
     // mock can't write in first location
@@ -286,6 +289,8 @@ public class SegmentLocalCacheManagerTest
   @Test
   public void testRetryAllFail() throws Exception
   {
+    String currentUser = System.getProperty("user.name");
+    Assume.assumeFalse("Test skipped for root user", "root".equals(currentUser));
     final List<StorageLocationConfig> locations = new ArrayList<>();
     final File localStorageFolder = tmpFolder.newFolder("local_storage_folder");
     // mock can't write in first location
@@ -690,6 +695,9 @@ public class SegmentLocalCacheManagerTest
   @Test
   public void testSegmentDistributionUsingRandomStrategy() throws Exception
   {
+    String currentUser = System.getProperty("user.name");
+    Assume.assumeFalse("Test skipped for root user", "root".equals(currentUser));
+
     final List<StorageLocationConfig> locationConfigs = new ArrayList<>();
     final StorageLocationConfig locationConfig = createStorageLocationConfig("local_storage_folder", 10L,
             true);
