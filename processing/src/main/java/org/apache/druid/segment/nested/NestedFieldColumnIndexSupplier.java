@@ -621,8 +621,7 @@ public class NestedFieldColumnIndexSupplier<TStringDictionary extends Indexed<By
 
             // in the future, this could use an int iterator
             final Iterator<Integer> iterator = localDictionary.iterator();
-            int next;
-            int index = 0;
+            int index = -1;
             boolean nextSet = false;
 
             @Override
@@ -644,19 +643,16 @@ public class NestedFieldColumnIndexSupplier<TStringDictionary extends Indexed<By
                 }
               }
               nextSet = false;
-              return getBitmap(next);
+              return getBitmap(index);
             }
 
             private void findNext()
             {
               while (!nextSet && iterator.hasNext()) {
                 Integer nextValue = iterator.next();
+                index++;
                 nextSet = stringPredicate.apply(StringUtils.fromUtf8Nullable(stringDictionary.get(nextValue)))
                                          .matches(includeUnknown);
-                if (nextSet) {
-                  next = index;
-                }
-                index++;
               }
             }
           };
@@ -902,8 +898,7 @@ public class NestedFieldColumnIndexSupplier<TStringDictionary extends Indexed<By
 
             // in the future, this could use an int iterator
             final Iterator<Integer> iterator = localDictionary.iterator();
-            int next;
-            int index = 0;
+            int index = -1;
             boolean nextSet = false;
 
             @Override
@@ -926,22 +921,19 @@ public class NestedFieldColumnIndexSupplier<TStringDictionary extends Indexed<By
               }
               nextSet = false;
 
-              return getBitmap(next);
+              return getBitmap(index);
             }
 
             private void findNext()
             {
               while (!nextSet && iterator.hasNext()) {
-                Integer nextValue = iterator.next();
+                final Integer nextValue = iterator.next();
+                index++;
                 if (nextValue == 0) {
                   nextSet = longPredicate.applyNull().matches(includeUnknown);
                 } else {
                   nextSet = longPredicate.applyLong(longDictionary.get(nextValue - adjustLongId)).matches(includeUnknown);
                 }
-                if (nextSet) {
-                  next = index;
-                }
-                index++;
               }
             }
           };
@@ -1170,8 +1162,7 @@ public class NestedFieldColumnIndexSupplier<TStringDictionary extends Indexed<By
 
             // in the future, this could use an int iterator
             final Iterator<Integer> iterator = localDictionary.iterator();
-            int next;
-            int index = 0;
+            int index = -1;
             boolean nextSet = false;
 
             @Override
@@ -1193,23 +1184,20 @@ public class NestedFieldColumnIndexSupplier<TStringDictionary extends Indexed<By
                 }
               }
               nextSet = false;
-              return getBitmap(next);
+              return getBitmap(index);
             }
 
             private void findNext()
             {
               while (!nextSet && iterator.hasNext()) {
-                Integer nextValue = iterator.next();
+                final Integer nextValue = iterator.next();
+                index++;
                 if (nextValue == 0) {
                   nextSet = doublePredicate.applyNull().matches(includeUnknown);
                 } else {
                   nextSet = doublePredicate.applyDouble(doubleDictionary.get(nextValue - adjustDoubleId))
                                            .matches(includeUnknown);
                 }
-                if (nextSet) {
-                  next = index;
-                }
-                index++;
               }
             }
           };
@@ -1399,8 +1387,7 @@ public class NestedFieldColumnIndexSupplier<TStringDictionary extends Indexed<By
 
             // in the future, this could use an int iterator
             final Iterator<Integer> iterator = localDictionary.iterator();
-            int next;
-            int index;
+            int index = -1;
             boolean nextSet = false;
 
             @Override
@@ -1422,13 +1409,14 @@ public class NestedFieldColumnIndexSupplier<TStringDictionary extends Indexed<By
                 }
               }
               nextSet = false;
-              return getBitmap(next);
+              return getBitmap(index);
             }
 
             private void findNext()
             {
               while (!nextSet && iterator.hasNext()) {
-                Integer nextValue = iterator.next();
+                final Integer nextValue = iterator.next();
+                index++;
                 if (nextValue >= adjustArrayId) {
                   // this shouldn't be possible since arrayIds will only exist if array dictionary is not null
                   // v4 columns however have a null array dictionary
@@ -1457,10 +1445,6 @@ public class NestedFieldColumnIndexSupplier<TStringDictionary extends Indexed<By
                   nextSet = stringPredicate.apply(StringUtils.fromUtf8Nullable(stringDictionary.get(nextValue)))
                                            .matches(includeUnknown);
                 }
-                if (nextSet) {
-                  next = index;
-                }
-                index++;
               }
             }
           };
