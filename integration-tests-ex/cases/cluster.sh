@@ -153,7 +153,7 @@ function docker_file {
     export COMPOSE_DIR=$TARGET_DIR/cluster/$DRUID_INTEGRATION_TEST_GROUP
     mkdir -p $COMPOSE_DIR
     pushd $CLUSTER_DIR > /dev/null
-    python3 $TEMPLATE_SCRIPT
+    ambari-python-wrap $TEMPLATE_SCRIPT
     popd > /dev/null
     cp -r $BASE_MODULE_DIR/cluster/Common $TARGET_DIR/cluster
   else
