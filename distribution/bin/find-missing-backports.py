@@ -48,7 +48,7 @@ def find_missing_backports(pr_jsons, release_pr_subjects, release_pr_numbers):
         backport_found = True
       if str(pr['number']) in release_pr_numbers:
         backport_found = True
-      if backport_found == False: 
+      if backport_found == False:
         print("Missing backport found for PR {}, url: {}".format(pr['number'], pr['html_url']))
 
 def find_next_url(links):
@@ -122,3 +122,9 @@ while True:
       sys.exit(1)
     break
 find_missing_backports(pr_items, release_pr_subjects, release_pr_numbers)
+
+while next_url is not None:
+    resp = requests.get(next_url, auth=(github_username, os.environ["GIT_TOKEN"]))
+    find_missing_backports(resp.json(), release_pr_subjects)
+    links = resp.headers['Link'].split(',')
+    next_url = find_next_url(links)
