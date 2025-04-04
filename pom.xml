@@ -165,7 +165,6 @@
          <jacocoArgLine />
          <!--  used to enable continuous profiling of jdk17 unit tests in github actions  -->
          <jfrProfilerArgLine />
-        <open.druid.version>29.0.1</open.druid.version>
     </properties>
 
     <modules>

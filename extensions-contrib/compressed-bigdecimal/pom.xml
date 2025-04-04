@@ -64,28 +64,28 @@
     <dependency>
       <groupId>org.apache.druid</groupId>
       <artifactId>druid-processing</artifactId>
-      <version>${open.druid.version}</version>
+      <version>${project.parent.version}</version>
       <classifier>tests</classifier>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.druid</groupId>
       <artifactId>druid-processing</artifactId>
-      <version>${open.druid.version}</version>
+      <version>${project.parent.version}</version>
       <type>test-jar</type>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.druid</groupId>
       <artifactId>druid-sql</artifactId>
-      <version>${open.druid.version}</version>
+      <version>${project.parent.version}</version>
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.druid</groupId>
       <artifactId>druid-server</artifactId>
-      <version>${open.druid.version}</version>
+      <version>${project.parent.version}</version>
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>
