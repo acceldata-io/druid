@@ -36,6 +36,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -1618,6 +1619,9 @@ public class EvalTest extends InitializedNullHandlingTest
     // longs
     assertBestEffortOf(1L, ExpressionType.LONG, 1L);
     assertBestEffortOf(1, ExpressionType.LONG, 1L);
+
+    // BigDecimal
+    assertBestEffortOf(new BigDecimal("0.034"), ExpressionType.DOUBLE, 0.034);
 
     // by default, booleans are handled as longs
     assertBestEffortOf(true, ExpressionType.LONG, 1L);
