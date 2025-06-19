@@ -51,6 +51,10 @@
             <artifactId>orc-mapreduce</artifactId>
             <version>${orc.version}</version>
             <exclusions>
+                   <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>aircompressor</artifactId>
+                </exclusion>
                 <exclusion>
                     <groupId>com.esotericsoftware</groupId>
                     <artifactId>kryo-shaded</artifactId>
@@ -122,6 +126,10 @@
             <artifactId>orc-core</artifactId>
             <version>${orc.version}</version>
             <exclusions>
+                   <exclusion>
+                    <groupId>io.airlift</groupId>
+                    <artifactId>aircompressor</artifactId>
+                </exclusion>
                 <exclusion>
                     <groupId>com.google.protobuf</groupId>
                     <artifactId>protobuf-java</artifactId>
