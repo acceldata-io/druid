@@ -1059,6 +1059,12 @@
                 <groupId>org.schemarepo</groupId>
                 <artifactId>schema-repo-common</artifactId>
                 <version>0.1.3</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.google.code.gson</groupId>
+                        <artifactId>gson</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.apache.avro</groupId>
@@ -1138,6 +1144,10 @@
                 <artifactId>caliper</artifactId>
                 <version>0.5-rc1</version>
                 <exclusions>
+                    <exclusion>
+                        <groupId>com.google.code.gson</groupId>
+                        <artifactId>gson</artifactId>
+                    </exclusion>
                     <!-- caliper ships a very old asm version which can cause issues during testing  -->
                     <exclusion>
                         <groupId>asm</groupId>
