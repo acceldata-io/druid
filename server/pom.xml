@@ -369,6 +369,12 @@
             <groupId>com.google.caliper</groupId>
             <artifactId>caliper</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.code.gson</groupId>
+                    <artifactId>gson</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.sun.jersey.jersey-test-framework</groupId>

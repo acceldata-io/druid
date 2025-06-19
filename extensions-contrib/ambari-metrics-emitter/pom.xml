@@ -53,6 +53,10 @@
       <version>2.7.0.0.0</version>
       <exclusions>
         <exclusion>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>org.codehaus.jackson</groupId>
           <artifactId>jackson-core-asl</artifactId>
         </exclusion>

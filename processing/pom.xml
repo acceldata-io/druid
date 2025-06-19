@@ -362,6 +362,12 @@
       <groupId>com.google.caliper</groupId>
       <artifactId>caliper</artifactId>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <!-- explicitly declare mockito-core dependency to make anaylize-dependencies happy when running with Java 8 -->
     <dependency>
