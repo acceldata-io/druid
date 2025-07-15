@@ -2874,7 +2874,7 @@ libraries:
 name: javax.ws.rs-api
 version: 2.1.1
 license_category: binary
-module: server
+module: extensions/druid-avro-extensions
 license_name: Eclipse Public License 2.0
 libraries:
   - javax.ws.rs: javax.ws.rs-api
