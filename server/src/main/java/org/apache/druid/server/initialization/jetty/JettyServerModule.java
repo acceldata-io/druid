@@ -19,8 +19,6 @@
 
 package org.apache.druid.server.initialization.jetty;
 
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Preconditions;
 import com.google.common.primitives.Ints;
@@ -37,9 +35,7 @@ import org.apache.commons.lang3.SystemUtils;
 import org.apache.druid.guice.Jerseys;
 import org.apache.druid.guice.JsonConfigProvider;
 import org.apache.druid.guice.LazySingleton;
-import org.apache.druid.guice.annotations.Json;
 import org.apache.druid.guice.annotations.Self;
-import org.apache.druid.guice.annotations.Smile;
 import org.apache.druid.java.util.common.ISE;
 import org.apache.druid.java.util.common.RE;
 import org.apache.druid.java.util.common.lifecycle.Lifecycle;
