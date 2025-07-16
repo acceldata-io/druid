@@ -19,9 +19,8 @@
 
 package org.apache.druid.server.initialization.jetty;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.fasterxml.jackson.jaxrs.smile.JacksonSmileProvider;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import com.google.common.annotations.VisibleForTesting;
 import com.google.common.base.Preconditions;
 import com.google.common.primitives.Ints;
@@ -162,24 +161,6 @@ public class JettyServerModule extends JerseyServletModule
         injector.getExistingBinding(Key.get(SslContextFactory.Server.class)),
         injector.getInstance(TLSCertificateChecker.class)
     );
-  }
-
-  @Provides
-  @LazySingleton
-  public JacksonJsonProvider getJacksonJsonProvider(@Json ObjectMapper objectMapper)
-  {
-    final JacksonJsonProvider provider = new JacksonJsonProvider();
-    provider.setMapper(objectMapper);
-    return provider;
-  }
-
-  @Provides
-  @LazySingleton
-  public JacksonSmileProvider getJacksonSmileProvider(@Smile ObjectMapper objectMapper)
-  {
-    final JacksonSmileProvider provider = new JacksonSmileProvider();
-    provider.setMapper(objectMapper);
-    return provider;
   }
 
   static Server makeAndInitializeServer(
