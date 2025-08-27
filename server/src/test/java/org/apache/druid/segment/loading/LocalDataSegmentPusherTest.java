@@ -29,10 +29,10 @@ import org.apache.druid.timeline.DataSegment;
 import org.apache.druid.timeline.partition.NoneShardSpec;
 import org.apache.druid.utils.CompressionUtils;
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.Assume;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
 

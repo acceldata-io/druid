@@ -54,7 +54,8 @@ public class RangerAdminClientImpl extends AbstractRangerAdminClient
 
   @Override
   public ServicePolicies getServicePoliciesIfUpdated(long lastKnownVersion, long lastActivationTimeInMillis)
-          throws Exception  {
+      throws Exception
+  {
 
     String basedir = System.getProperty("basedir");
     if (basedir == null) {

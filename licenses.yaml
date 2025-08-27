@@ -493,7 +493,7 @@ name: Apache Commons BeanUtils
 license_category: binary
 module: java-core
 license_name: Apache License version 2.0
-version: 1.9.4
+version: 1.11.0
 libraries:
   - commons-beanutils: commons-beanutils
 notices:
@@ -809,7 +809,7 @@ name: com.nimbusds nimbus-jose-jwt
 license_category: binary
 module: extensions/druid-pac4j
 license_name: Apache License version 2.0
-version: 8.22.1
+version: 9.48
 libraries:
   - com.nimbusds: nimbus-jose-jwt
 
@@ -1075,13 +1075,11 @@ libraries:
 
 name: Jetbrains Annotations
 license_category: binary
-module: extensions/druid-kubernetes-extensions
 module: extensions/kubernetes-extensions
 license_name: Apache License version 2.0
-version: 13.0
+version: 26.0.1
 libraries:
   - org.jetbrains: annotations
-
 
 ---
 
@@ -1249,7 +1247,7 @@ name: Netty
 license_category: binary
 module: java-core
 license_name: Apache License version 2.0
-version: 4.1.100.Final
+version: 4.1.118.Final
 libraries:
   - io.netty: netty-buffer
   - io.netty: netty-codec
@@ -1937,7 +1935,7 @@ name: AsyncHttpClient asynchttpclient
 license_category: binary
 module: java-core
 license_name: Apache License version 2.0
-version: 2.5.3
+version: 3.0.1
 libraries:
   - org.asynchttpclient: async-http-client
   - org.asynchttpclient: async-http-client-netty-utils
@@ -2968,7 +2966,7 @@ name: Apache Avro
 license_category: binary
 module: extensions/druid-avro-extensions
 license_name: Apache License version 2.0
-version: 1.11.3
+version: 1.11.4
 libraries:
   - org.apache.avro: avro
   - org.apache.avro: avro-mapred
@@ -3167,7 +3165,7 @@ name: Apache Parquet
 license_category: binary
 module: extensions/druid-parquet-extensions
 license_name: Apache License version 2.0
-version: 1.13.0
+version: 1.15.2
 libraries:
   - org.apache.parquet: parquet-avro
   - org.apache.parquet: parquet-column
@@ -3342,7 +3340,7 @@ name: Protocol Buffers
 license_category: binary
 module: java-core
 license_name: BSD-3-Clause License
-version: 3.24.0
+version: 3.25.5
 copyright: Google, Inc.
 license_file_path:
   - licenses/bin/protobuf-java.BSD3
@@ -3508,7 +3506,7 @@ name: Protocol Buffers
 license_category: binary
 module: extensions/druid-protobuf-extensions
 license_name: BSD-3-Clause License
-version: 3.24.0
+version: 3.25.5
 copyright: Google, Inc.
 license_file_path: licenses/bin/protobuf-java.BSD3
 libraries:
@@ -3801,7 +3799,7 @@ name: Reactive Streams
 license_category: binary
 module: java-core
 license_name: Creative Commons CC0
-version: 1.0.2
+version: 1.0.4
 license_file_path: licenses/bin/reactive-streams.CC0
 libraries:
   - org.reactivestreams: reactive-streams
@@ -4380,7 +4378,7 @@ name: Netty
 license_category: binary
 module: extensions/druid-azure-extensions
 license_name: Apache License version 2.0
-version: 2.0.61.Final
+version: 2.0.70.Final
 libraries:
   - io.netty: netty-tcnative-boringssl-static
   - io.netty: netty-tcnative-classes
@@ -4858,7 +4856,7 @@ name: Gson
 license_category: binary
 module: hadoop-client
 license_name: Apache License version 2.0
-version: 2.2.4
+version: 2.10.1
 libraries:
   - com.google.code.gson: gson
 

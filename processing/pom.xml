@@ -28,7 +28,7 @@
   <parent>
     <groupId>org.apache.druid</groupId>
     <artifactId>druid</artifactId>
-    <version>29.0.1.3.3.6.1-SNAPSHOT</version>
+    <version>29.0.1.3.3.6.2-1</version>
   </parent>
 
   <properties>
@@ -362,6 +362,12 @@
       <groupId>com.google.caliper</groupId>
       <artifactId>caliper</artifactId>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <!-- explicitly declare mockito-core dependency to make anaylize-dependencies happy when running with Java 8 -->
     <dependency>

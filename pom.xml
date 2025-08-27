@@ -29,7 +29,7 @@
 
     <groupId>org.apache.druid</groupId>
     <artifactId>druid</artifactId>
-    <version>29.0.1.3.3.6.1-SNAPSHOT</version>
+    <version>29.0.1.3.3.6.2-1</version>
     <packaging>pom</packaging>
 
     <name>Druid</name>
@@ -73,12 +73,12 @@
         <repository>
           <id>nexus-releases</id>
           <name>Releases</name>
-         <url>https://repo1.acceldata.dev/repository/odp-staging-release/</url>
+         <url>https://repo1.acceldata.dev/repository/odp-release/</url>
        </repository>
        <snapshotRepository>
          <id>nexus-snapshots</id>
          <name>Snapshot</name>
-         <url>https://repo1.acceldata.dev/repository/odp-staging-snapshot/</url>
+         <url>https://repo1.acceldata.dev/repository/odp-snapshot/</url>
        </snapshotRepository>
     </distributionManagement>
 
@@ -90,18 +90,18 @@
         <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
         <aether.version>0.9.0.M2</aether.version>
         <apache.curator.version>5.5.0</apache.curator.version>
-        <apache.kafka.version>3.7.1.3.3.6.1-SNAPSHOT</apache.kafka.version>
-        <apache.ranger.version>2.5.0.3.3.6.1-SNAPSHOT</apache.ranger.version>
-        <apache.ranger.gson.version>2.2.4</apache.ranger.gson.version>
+        <apache.kafka.version>3.7.2.3.3.6.2-1</apache.kafka.version>
+        <apache.ranger.version>2.5.0.3.3.6.2-1</apache.ranger.version>
+        <apache.ranger.gson.version>2.10.1</apache.ranger.gson.version>
         <scala.library.version>2.13.11</scala.library.version>
         <avatica.version>1.23.0</avatica.version>
-        <avro.version>1.11.3</avro.version>
+        <avro.version>1.11.4</avro.version>
         <!-- When updating Calcite, also propagate updates to these files which we've copied and modified:
              default_config.fmpp
              sql/src/main/codegen/includes/*
           -->
         <calcite.version>1.35.0</calcite.version>
-        <confluent.version>6.2.12</confluent.version>
+        <confluent.version>7.9.2</confluent.version>
         <datasketches.version>4.2.0</datasketches.version>
         <datasketches.memory.version>2.2.0</datasketches.memory.version>
         <derby.version>10.14.2.0</derby.version>
@@ -111,22 +111,22 @@
         <guava.version>32.0.1-jre</guava.version>
         <guice.version>4.1.0</guice.version>
         <hamcrest.version>1.3</hamcrest.version>
-        <jetty.version>9.4.53.v20231009</jetty.version>
+        <jetty.version>9.4.56.v20240826</jetty.version>
         <jersey.version>1.19.4</jersey.version>
-        <jackson.version>2.12.7.20221012</jackson.version>
+        <jackson.version>2.12.7</jackson.version>
         <codehaus.jackson.version>1.9.13</codehaus.jackson.version>
         <log4j.version>2.18.0</log4j.version>
         <mysql.version>5.1.49</mysql.version>
         <mariadb.version>2.7.3</mariadb.version>
         <netty3.version>3.10.6.Final</netty3.version>
-        <netty4.version>4.1.100.Final</netty4.version>
+        <netty4.version>4.1.118.Final</netty4.version>
         <postgresql.version>42.7.2</postgresql.version>
-        <protobuf.version>3.24.0</protobuf.version>
+        <protobuf.version>3.25.5</protobuf.version>
         <resilience4j.version>1.3.1</resilience4j.version>
         <slf4j.version>1.7.36</slf4j.version>
         <jna.version>5.13.0</jna.version>
         <jna-platform.version>5.13.0</jna-platform.version>
-        <hadoop.compile.version>3.3.6.3.3.6.1-SNAPSHOT</hadoop.compile.version>
+        <hadoop.compile.version>3.3.6.3.3.6.2-1</hadoop.compile.version>
         <mockito.version>5.5.0</mockito.version>
         <mockito.inline.artifact>core</mockito.inline.artifact>
         <aws.sdk.version>1.12.638</aws.sdk.version>
@@ -135,12 +135,13 @@
         <hibernate-validator.version>6.2.5.Final</hibernate-validator.version>
         <httpclient.version>4.5.13</httpclient.version>
         <!-- When upgrading ZK, edit docs and integration tests as well (integration-tests/docker-base/setup.sh) -->
-        <zookeeper.version>3.8.4.3.3.6.1-SNAPSHOT</zookeeper.version>
+        <zookeeper.version>3.8.4.3.3.6.2-1</zookeeper.version>
         <checkerframework.version>2.5.7</checkerframework.version>
         <com.google.apis.client.version>2.2.0</com.google.apis.client.version>
         <com.google.http.client.apis.version>1.42.3</com.google.http.client.apis.version>
         <com.google.apis.compute.version>v1-rev20230606-2.0.0</com.google.apis.compute.version>
         <com.google.cloud.storage.version>2.29.1</com.google.cloud.storage.version>
+        <nimbus.jose.jwt.version>9.48</nimbus.jose.jwt.version>
         <jdk.strong.encapsulation.argLine><!-- empty placeholder --></jdk.strong.encapsulation.argLine>
         <jdk.security.manager.allow.argLine><!-- empty placeholder --></jdk.security.manager.allow.argLine>
         <repoOrgId>maven.org</repoOrgId>
@@ -284,7 +285,7 @@
         <repository>
             <id>acceldata staging repo</id>
             <name>acceldata staging repo</name>
-            <url>https://repo1.acceldata.dev/repository/odp-staging-central/</url>
+            <url>https://repo1.acceldata.dev/repository/odp-central/</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
@@ -322,7 +323,7 @@
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
-                <version>2.11.0</version>
+                <version>2.16.1</version>
             </dependency>
             <dependency>
                 <groupId>commons-logging</groupId>
@@ -543,7 +544,7 @@
             <dependency>
                 <groupId>org.apache.hive</groupId>
                 <artifactId>hive-storage-api</artifactId>
-                <version>4.0.0.3.3.6.1-SNAPSHOT</version>
+                <version>4.0.1.3.3.6.2-1</version>
             </dependency>
             <dependency>
                 <groupId>com.google.guava</groupId>
@@ -950,7 +951,7 @@
             <groupId>commons-beanutils</groupId>
                 <artifactId>commons-beanutils</artifactId>
                 <!-- override the transitive dependency from com.opencsv:opensv:4.6 to version 1.9.3 to address CVE-2014-0114 -->
-                <version>1.9.4</version>
+                <version>1.11.0</version>
             </dependency>
             <dependency>
                 <groupId>com.jayway.jsonpath</groupId>
@@ -985,8 +986,7 @@
             <dependency>
                 <groupId>org.asynchttpclient</groupId>
                 <artifactId>async-http-client</artifactId>
-                <!-- Uses Netty 4.1.x -->
-                <version>2.5.3</version>
+                <version>3.0.1</version>
             </dependency>
             <dependency>
                 <groupId>net.java.dev.jna</groupId>
@@ -1057,6 +1057,12 @@
                 <groupId>org.schemarepo</groupId>
                 <artifactId>schema-repo-common</artifactId>
                 <version>0.1.3</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>com.google.code.gson</groupId>
+                        <artifactId>gson</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.apache.avro</groupId>
@@ -1136,6 +1142,10 @@
                 <artifactId>caliper</artifactId>
                 <version>0.5-rc1</version>
                 <exclusions>
+                    <exclusion>
+                        <groupId>com.google.code.gson</groupId>
+                        <artifactId>gson</artifactId>
+                    </exclusion>
                     <!-- caliper ships a very old asm version which can cause issues during testing  -->
                     <exclusion>
                         <groupId>asm</groupId>
@@ -1353,6 +1363,12 @@
                 <artifactId>servlet-api</artifactId>
               </exclusion>
             </exclusions>
+          </dependency>
+          <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>nimbus-jose-jwt</artifactId>
+            <version>${nimbus.jose.jwt.version}</version>
+            <scope>compile</scope>
           </dependency>
         </dependencies>
     </dependencyManagement>

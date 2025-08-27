@@ -26,12 +26,12 @@ import org.apache.druid.java.util.common.ISE;
 import org.apache.druid.java.util.common.StringUtils;
 import org.apache.druid.segment.TestHelper;
 import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.rules.TemporaryFolder;
-import org.junit.Assume;
 
 import java.io.File;
 import java.io.IOException;
@@ -94,7 +94,7 @@ public class LookupSnapshotTakerTest
   @Test
   public void testIOExceptionDuringLookupPersist() throws IOException
   {
-   String currentUser = System.getProperty("user.name");
+    String currentUser = System.getProperty("user.name");
     Assume.assumeFalse("Test skipped for root user", "root".equals(currentUser));
     File directory = temporaryFolder.newFolder();
     LookupSnapshotTaker lookupSnapshotTaker = new LookupSnapshotTaker(mapper, directory.getAbsolutePath());
