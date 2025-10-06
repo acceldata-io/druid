@@ -94,7 +94,7 @@
         <apache.ranger.gson.version>2.9.0</apache.ranger.gson.version>
         <scala.library.version>2.13.11</scala.library.version>
         <avatica.version>1.23.0</avatica.version>
-        <avro.version>1.11.3</avro.version>
+        <avro.version>1.11.4</avro.version>
         <!-- When updating Calcite, also propagate updates to these files which we've copied and modified:
              default_config.fmpp
              sql/src/main/codegen/includes/*
