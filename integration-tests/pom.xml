@@ -119,6 +119,10 @@
                     <groupId>com.squareup.okhttp</groupId>
                     <artifactId>okhttp</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>io.grpc</groupId>
+                    <artifactId>grpc-netty-shaded</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
