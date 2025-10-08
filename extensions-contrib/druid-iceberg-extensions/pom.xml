@@ -714,6 +714,12 @@
       <artifactId>iceberg-parquet</artifactId>
       <version>${iceberg.core.version}</version>
       <scope>test</scope>
+      <exclusions>
+          <exclusion>
+              <groupId>io.airlift</groupId>
+              <artifactId>aircompressor</artifactId>
+          </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.parquet</groupId>
