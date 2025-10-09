@@ -46,7 +46,7 @@ Reference: https://dzone.com/articles/build-docker-image-from-maven
     <parent>
         <artifactId>druid</artifactId>
         <groupId>org.apache.druid</groupId>
-        <version>29.0.1.3.3.6.1-1</version>
+        <version>29.0.1.3.3.6.1-101</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
