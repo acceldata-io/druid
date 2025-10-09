@@ -120,6 +120,10 @@
                     <artifactId>okhttp</artifactId>
                 </exclusion>
                 <exclusion>
+                    <groupId>io.grpc</groupId>
+                    <artifactId>grpc-netty-shaded</artifactId>
+                </exclusion>                
+                <exclusion>                  
                     <groupId>io.airlift</groupId>
                     <artifactId>aircompressor</artifactId>
                 </exclusion>
