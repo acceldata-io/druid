@@ -112,7 +112,7 @@
         <hamcrest.version>1.3</hamcrest.version>
         <jetty.version>9.4.57.v20241219</jetty.version>
         <jersey.version>1.19.4</jersey.version>
-        <jackson.version>2.12.7.20221012</jackson.version>
+        <jackson.version>2.16.1</jackson.version>
         <codehaus.jackson.version>1.9.13</codehaus.jackson.version>
         <log4j.version>2.18.0</log4j.version>
         <mysql.version>5.1.49</mysql.version>
@@ -120,7 +120,7 @@
         <netty3.version>3.10.6.Final</netty3.version>
         <netty4.version>4.1.124.Final</netty4.version>
         <postgresql.version>42.7.2</postgresql.version>
-        <protobuf.version>3.24.0</protobuf.version>
+        <protobuf.version>3.25.5</protobuf.version>
         <resilience4j.version>1.3.1</resilience4j.version>
         <slf4j.version>1.7.36</slf4j.version>
         <jna.version>5.13.0</jna.version>
