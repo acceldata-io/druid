@@ -45,6 +45,10 @@
             <version>3.11.3</version>
             <exclusions>
                 <exclusion>
+                    <groupId>javax.xml.bind</groupId>
+                    <artifactId>jaxb-api</artifactId>
+                </exclusion>
+                <exclusion>
                     <groupId>com.google.code.gson</groupId>
                     <artifactId>gson</artifactId>
                 </exclusion>
@@ -111,7 +115,7 @@
             <artifactId>commons-lang</artifactId>
             <scope>provided</scope>
         </dependency>
-            
+
         <!-- Tests -->
         <dependency>
             <groupId>org.apache.druid</groupId>
