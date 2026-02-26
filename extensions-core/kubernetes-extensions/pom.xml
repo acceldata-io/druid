@@ -34,7 +34,7 @@
   </parent>
 
   <properties>
-    <kubernetes.client.version>25.0.0</kubernetes.client.version>
+    <kubernetes.client.version>25.0.0-legacy</kubernetes.client.version>
   </properties>
 
 
