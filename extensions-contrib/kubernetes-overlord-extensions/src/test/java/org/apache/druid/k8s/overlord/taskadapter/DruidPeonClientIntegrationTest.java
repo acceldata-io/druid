@@ -52,8 +52,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.UncheckedIOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -149,7 +149,7 @@ public class DruidPeonClientIntegrationTest
                                  .map(Integer::parseInt)
                                  .collect(Collectors.toList()));
       }
-      catch (UncheckedIOException e) {
+      catch (IOException e) {
         throw new RuntimeException(e);
       }
     });
