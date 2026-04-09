@@ -474,6 +474,10 @@
       <scope>runtime</scope>
       <exclusions>
         <exclusion>
+          <groupId>javax.xml.bind</groupId>
+          <artifactId>jaxb-api</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>org.apache.orc</groupId>
           <artifactId>orc-core</artifactId>
         </exclusion>
