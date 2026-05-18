@@ -85,7 +85,6 @@
      ]]></notes>
     <cve>CVE-2023-36479</cve>
   </suppress>
-
   <suppress>
     <!--
       the suppressions here aren't currently applicable, but can be resolved once we update the version
