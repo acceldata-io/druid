@@ -605,11 +605,10 @@ public interface Function extends NamedFunction
         ExprEval<?> exprEval = expr.eval(bindings);
         ExpressionType exprType = exprEval.type();
 
-        if (isValidType(exprType)) {
-          outputType = ExpressionTypeConversion.function(outputType, exprType);
-        }
-
         if (exprEval.value() != null) {
+          if (isValidType(exprType)) {
+            outputType = ExpressionTypeConversion.function(outputType, exprType);
+          }
           evals.add(exprEval);
         }
       }
@@ -1174,13 +1173,16 @@ public interface Function extends NamedFunction
     }
 
     @Override
+    public boolean canVectorize(Expr.InputBindingInspector inspector, List<Expr> args)
+    {
+      return false;
+    }
+
+    @Override
     protected ExprEval eval(final long x, final long y)
     {
       if (y == 0) {
-        if (x != 0) {
-          return ExprEval.ofLong(null);
-        }
-        return ExprEval.ofLong(0);
+        return ExprEval.ofLong(null);
       }
       return ExprEval.ofLong(x / y);
     }
