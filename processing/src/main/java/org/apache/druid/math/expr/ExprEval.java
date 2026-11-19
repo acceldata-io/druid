@@ -36,6 +36,7 @@ import org.apache.druid.segment.data.ComparableStringArray;
 import org.apache.druid.segment.nested.StructuredData;
 
 import javax.annotation.Nullable;
+import java.math.BigDecimal;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
@@ -417,7 +418,7 @@ public abstract class ExprEval<T>
       return new StringExprEval((String) val);
     }
     if (val instanceof Number) {
-      if (val instanceof Float || val instanceof Double) {
+      if (val instanceof Float || val instanceof Double || val instanceof BigDecimal) {
         return new DoubleExprEval((Number) val);
       }
       return new LongExprEval((Number) val);
