@@ -92,7 +92,7 @@ public class DistinctKeyCollectorTest
   public void test_single_key_addition()
   {
     DistinctKeyCollector distinctKeyCollector = new DistinctKeyCollector(
-        clusterBy.keyComparator(signature),
+        comparator,
         new Object2LongRBTreeMap<>(comparator),
         2
     );
